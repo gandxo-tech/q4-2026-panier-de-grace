@@ -1,0 +1,8 @@
+{
+  "name": "Panier de Grâce – Paniers gourmands de la Semaine de la Gratitude · Cotonou",
+  "description": "Paniers gourmands de produits béninois pour remercier ceux qu'on aime : miel, cajou, bissap, confitures. Semaine de la Gratitude du 20 au 26 novembre 2026.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
