@@ -54,6 +54,7 @@ export function openCart() {
   $('.drawer')?.classList.add('open');
   $('.overlay')?.classList.add('open');
   $('.drawer')?.setAttribute('aria-hidden', 'false');
+  closeMobileNav();
   setTimeout(() => $('.close-btn', $('.drawer'))?.focus(), 50);
 }
 
@@ -61,6 +62,19 @@ export function closeCart() {
   $('.drawer')?.classList.remove('open');
   $('.overlay')?.classList.remove('open');
   $('.drawer')?.setAttribute('aria-hidden', 'true');
+}
+
+export function openMobileNav() {
+  $('#mobile-nav-drawer')?.classList.add('open');
+  $('#mobile-nav-overlay')?.classList.add('open');
+  $('#mobile-nav-drawer')?.setAttribute('aria-hidden', 'false');
+  closeCart();
+}
+
+export function closeMobileNav() {
+  $('#mobile-nav-drawer')?.classList.remove('open');
+  $('#mobile-nav-overlay')?.classList.remove('open');
+  $('#mobile-nav-drawer')?.setAttribute('aria-hidden', 'true');
 }
 
 function subtotal() {
@@ -427,7 +441,7 @@ function initCardCanvas() {
     // Footer watermark
     ctx.font = '700 24px "Work Sans", sans-serif';
     ctx.fillStyle = '#A94A2C';
-    ctx.fillText('PANIER DE GRÂCE · SEMAINE DE LA GRATITUDE 2026', 540, 1240);
+    ctx.fillText('PANIER DE GRÂCE · ÉDITION THANKSGIVING 2026', 540, 1240);
   }
   
   [to, msg, from].forEach(inp => inp && inp.addEventListener('input', draw));
@@ -841,6 +855,12 @@ function reveal() {
 
 // Global Event Listeners
 document.addEventListener('click', e => {
+  // Mobile nav drawer open / close
+  if (e.target.closest('#mobile-menu-btn')) { openMobileNav(); }
+  if (e.target.closest('#mobile-menu-close') || e.target.id === 'mobile-nav-overlay' || e.target.closest('.mobile-nav-link') || e.target.closest('#mobile-menu-cta') || e.target.closest('#mobile-menu-logo')) {
+    closeMobileNav();
+  }
+
   // Cart open / close
   if (e.target.closest('[data-open-cart]')) openCart();
   if (e.target.closest('[data-close-cart]') || e.target.classList.contains('overlay')) closeCart();
@@ -891,14 +911,14 @@ document.addEventListener('click', e => {
     const lines = cart.map(l => `${l.qty} × ${P[l.id]?.name || l.id}${l.note ? ' (Mot: ' + l.note + ')' : ''}`).join('\n• ');
     
     const waText = encodeURIComponent(
-      `Bonjour ${SITE_CONFIG.brand}, je souhaite commander pour la Semaine de la Gratitude 2026 :\n\n• ${lines}\n\nSous-total : ${fcfa(sub)}\nLivraison : ${shipFee ? fcfa(shipFee) : 'Offerte'}\nTotal : ${fcfa(total)}\n\nMerci de me confirmer la disponibilité et le créneau de livraison !`
+      `Bonjour ${SITE_CONFIG.brand}, je souhaite commander pour la Thanksgiving 2026 :\n\n• ${lines}\n\nSous-total : ${fcfa(sub)}\nLivraison : ${shipFee ? fcfa(shipFee) : 'Offerte'}\nTotal : ${fcfa(total)}\n\nMerci de me confirmer la disponibilité et le créneau de livraison !`
     );
     
     showModal(`
       <span class="eyebrow">Dernière étape</span>
-      <h2 style="font-size:1.6rem; color:var(--sec); margin-bottom:0.6rem;">Finalisez votre geste de gratitude</h2>
+      <h2 style="font-size:1.6rem; color:var(--sec); margin-bottom:0.6rem;">Finalisez votre geste de Thanksgiving</h2>
       <p style="font-size:0.95rem; margin-bottom:1.2rem;">
-        Ce site est une <b>démonstration pour la Semaine de la Gratitude 2026 à Cotonou</b>. Aucun débit bancaire n'est requis ici.
+        Ce site est une <b>démonstration pour l'Édition Spéciale Thanksgiving 2026 à Cotonou</b>. Aucun débit bancaire n'est requis ici.
       </p>
       
       <div style="background:var(--bg-warm); border-radius:8px; padding:1rem; margin-bottom:1.5rem; font-size:0.9rem;">
@@ -950,6 +970,8 @@ window.PanierApp = {
   addToCart,
   openCart,
   closeCart,
+  openMobileNav,
+  closeMobileNav,
   selectQuizOption: (qId, val) => {
     quizAnswers[qId] = val;
     quizStep++;

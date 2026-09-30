@@ -1,10 +1,10 @@
-// Données centrales - Panier de Grâce · Semaine de la Gratitude 2026 (Cotonou, Bénin)
+// Données centrales - Panier de Grâce · Thanksgiving & Semaine de la Gratitude 2026 (Cotonou, Bénin)
 
 export const SITE_CONFIG = {
   key: 'pdg',
   brand: 'Panier de Grâce',
-  title: 'Panier de Grâce – Paniers gourmands de la Semaine de la Gratitude · Cotonou',
-  description: 'Paniers gourmands de produits béninois pour remercier ceux qu\'on aime : miel de Parakou, cajou de Grand-Popo, bissap de Cotonou, mangues de Natitingou.',
+  title: 'Panier de Grâce – Paniers gourmands de Thanksgiving & Semaine de la Gratitude · Cotonou',
+  description: 'Paniers gourmands d\'artisans béninois pour Thanksgiving & la Semaine de la Gratitude : miel de Parakou, cajou de Grand-Popo, bissap de Cotonou, mangues de Natitingou.',
   lowStock: 6,
   freeShip: 35000,
   shipFee: 2000,
@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
     start: '2026-11-20T00:00:00+01:00',
     end: '2026-11-26T12:00:00+01:00',
     labels: {
-      before: 'La Semaine de la Gratitude commence dans',
+      before: 'Thanksgiving & la Semaine de la Gratitude commencent dans',
       live: 'Dernières commandes pour le jeudi 26 novembre dans',
       after: 'Merci ! Rendez-vous en novembre 2027'
     }
